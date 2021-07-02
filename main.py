@@ -1,6 +1,6 @@
 from data_config import *
 from elasticsearch import Elasticsearch
-
+from datetime import datetime
 
 
 def create_record():
@@ -17,4 +17,6 @@ except Exception as error:
     exit
 
 record=create_record()
-response = elastic.index(index='employees', doc_type='person', body=record)
+timestamp=datetime.now().isoformat()
+record.update({"@timestamp": timestamp})
+response = elastic.index(index='es_data_01',  body=record)
