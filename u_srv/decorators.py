@@ -13,12 +13,18 @@ def make_secure(func):
   return secure_function
 
 
-
 @make_secure
 def get_password(panel):
   if panel == "admin":
     return "1234"
   elif panel == "billing":
     return "ssp"
+  else:
+    return "invalid panel information"
   
 print(get_password("admin"))
+print(get_password("panel"))
+user = {"username": "sumits", "access_level": "admin"}
+print(get_password("admin"))
+print(get_password("panel"))
+print(get_password("billing"))
